@@ -133,14 +133,14 @@ $(function () {
 			templateHtml += 'score{{' + letter + '.color}} ';
 			templateHtml += '{{/if}} ';
 			templateHtml += '">';
-			/*templateHtml += '{{#if ' + letter + '.a}}';
+			templateHtml += '{{#if ' + letter + '.a}}';
 			// templateHtml += '<span class="label label-result label-{{' + letter + '.s}}">';
-			templateHtml += '<b>{{' + letter + '.a}}</b>';
+			//templateHtml += '<b>{{' + letter + '.a}}</b>';
 			templateHtml += '{{#if ' + letter + '.t}} ';
-			templateHtml += '({{' + letter + '.t}})';
+			templateHtml += '{{' + letter + '.t}}';
 			templateHtml += '{{/if}}';
 			// templateHtml += '</span>';
-			templateHtml += '{{/if}}';*/
+			templateHtml += '{{/if}}';
 			templateHtml += '{{#if ' + letter + '.a}}';
 			templateHtml += '{{' + letter + '.score}}';
 			templateHtml += '({{' + letter + '.a}})';
@@ -259,20 +259,21 @@ $(function () {
 				var probStatus = team[problem];
 				if (team[problem].s == "first" || team[problem].s == "solved" || team[problem].s == "tried") {
 					//sumScore += (parseInt(probStatus.t) + (parseInt(probStatus.a) - 1) * 20);
-					sumScore += team[problem].score;
+					sumScore += parseInt(team[problem].t);
+                    //console.log(team[problem]);
 					solved++;
 				}
 			}
 			//console.log(plist[problem].score);
 			var c = '_0';
-			if(team[problem].score == 0){
+			if(team[problem].t == 0){
 				c = '_0';
 			}
-			else if(team[problem].score/plist[problem].score == 1){
+			else if(team[problem].t/plist[problem].score == 1){
 				c = '_100';
 			}
 			else{
-				c = '_' + Math.floor((team[problem].score/plist[problem].score)*10)*10 + '_' + (Math.floor((team[problem].score/plist[problem].score)*10)+1)*10;
+				c = '_' + Math.floor((team[problem].t/plist[problem].score)*10)*10 + '_' + (Math.floor((team[problem].t/plist[problem].score)*10)+1)*10;
 			}
 			
 			//color.push(c);
